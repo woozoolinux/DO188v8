@@ -1,0 +1,11 @@
+FROM registry.ocp4.example.com:8443/redhattraining/podman-certificate-generator as certs
+
+
+
+FROM registry.ocp4.example.com:8443/ubi8/ubi
+
+RUN dnf module install -y nodejs:16 && \
+    groupadd -r student && useradd -r -m -g student student
+
+COPY --from=certs --chown=student:student /app/*.pem /etc/pki/tls/private/certs/
+COPY --chown=student:student . /app/
