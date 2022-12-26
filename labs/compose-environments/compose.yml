@@ -1,0 +1,8 @@
+services:
+  db-admin:
+    # Define pgAdmin interface
+  db:
+    # Define database
+volumes:
+#Define persistent volume
+
